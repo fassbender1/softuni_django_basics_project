@@ -24,6 +24,7 @@ class Studio(models.Model):
     )
 
     studio_logo_file = models.ImageField(
+        upload_to="studios/",
         null=True,
         blank=True
     )

@@ -25,6 +25,7 @@ class Movie(models.Model):
     )
 
     movie_poster_image = models.ImageField(
+        upload_to="movies/",
         null=True,
         blank=True
     )

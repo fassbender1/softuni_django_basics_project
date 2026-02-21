@@ -18,6 +18,7 @@ class Person(models.Model):
     )
 
     person_profile_image_file = models.ImageField(
+        upload_to="people/",
         null=True,
         blank=True
     )
