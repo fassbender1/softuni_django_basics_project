@@ -37,7 +37,6 @@ class Movie(models.Model):
     budget = models.IntegerField(
         null=False,
         blank=False,
-        default=0,
     )
 
     duration = models.IntegerField(
