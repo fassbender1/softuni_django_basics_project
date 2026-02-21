@@ -11,4 +11,5 @@ from movies.models import Movie
 class MovieCreateView(CreateView):
     model = Movie
     form_class = MovieForm
-    success_url = 'movies/cr'
+    template_name = "movies/add-movie.html"
+
