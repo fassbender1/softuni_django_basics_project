@@ -23,6 +23,11 @@ class Movie(models.Model):
         blank=False,
     )
 
+    movie_poster_image = models.ImageField(
+        null=True,
+        blank=True
+    )
+
     slug = models.SlugField(
         unique=True,
         blank=True,
