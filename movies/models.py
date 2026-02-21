@@ -1,5 +1,7 @@
+
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 
 from common.choices import GenreChoices, MovieStatusChoices
@@ -33,7 +35,8 @@ class Movie(models.Model):
     )
 
     release_date = models.DateTimeField(
-        auto_now_add=True,
+        # auto_now_add=True,
+        # default=timezone.now,
         null=False,
         blank=False,
     )
@@ -81,13 +84,13 @@ class Movie(models.Model):
         blank=True,
     )
 
-    # studio = models.ForeignKey(
-    #     "studios.Studio",
-    #     related_name="movies",
-    #     on_delete=models.CASCADE,
-    #     null=True,
-    #     blank=True,
-    # )
+    studio = models.ForeignKey(
+        "studios.Studio",
+        related_name="movies",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.title

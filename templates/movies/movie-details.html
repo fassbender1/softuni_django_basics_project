@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ movie.title }} | CineManager{% endblock %}
+{% block title %}{{ object.title }} | CineManager{% endblock %}
 
 {% block content %}
 <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'movies:list-movies' %}" class="text-gold">Movies</a></li>
-        <li class="breadcrumb-item active text-light" aria-current="page">{{ movie.title }}</li>
+        <li class="breadcrumb-item active text-light" aria-current="page">{{ object.title }}</li>
     </ol>
 </nav>
 
 <div class="row">
     <div class="col-lg-4 mb-4">
-        {% if movie.movie_poster_image %}
-            <img src="{{ movie.movie_poster_image.url }}" class="img-fluid rounded shadow" alt="{{ movie.title }}" style="border: 2px solid var(--gold);">
+        {% if object.movie_poster_image %}
+            <img src="{{ object.movie_poster_image.url }}" class="img-fluid rounded shadow" alt="{{ object.title }}" style="border: 2px solid var(--gold);">
         {% else %}
             <div class="bg-secondary rounded d-flex align-items-center justify-content-center shadow" style="height: 500px; border: 2px solid var(--gold);">
                 <span class="text-light">No Poster Available</span>
@@ -21,22 +21,22 @@
         {% endif %}
         
         <div class="mt-4 d-grid gap-2">
-            <a href="{% url 'movies:edit-movie' movie.slug %}" class="btn btn-burgundy">Edit Movie Details</a>
-            <a href="{% url 'movies:delete-movie' movie.slug %}" class="btn btn-outline-danger">Delete Movie</a>
+            <a href="{% url 'movies:edit-movie' object.slug %}" class="btn btn-burgundy">Edit Movie Details</a>
+            <a href="{% url 'movies:delete-movie' object.slug %}" class="btn btn-outline-danger">Delete Movie</a>
         </div>
     </div>
     
     <div class="col-lg-8">
-        <h1 class="text-gold display-4 mb-2">{{ movie.title }}</h1>
+        <h1 class="text-gold display-4 mb-2">{{ object.title }}</h1>
         <div class="mb-4">
-            <span class="badge badge-burgundy me-2">{{ movie.genre }}</span>
-            <span class="text-muted">| Released: {{ movie.release_date|date:"F j, Y" }}</span>
+            <span class="badge badge-burgundy me-2">{{ object.genre }}</span>
+            <span class="text">| Released: {{ object.release_date|date:"F j, Y" }}</span>
         </div>
 
         <div class="card mb-4">
             <div class="card-body">
                 <h4 class="card-title mb-3">Synopsis</h4>
-                <p class="lead">{{ movie.description }}</p>
+                <p class="lead">{{ object.description }}</p>
             </div>
         </div>
 
@@ -45,7 +45,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h6 class="text-gold text-uppercase small">Budget</h6>
-                        <p class="h5 mb-0">${{ movie.budget|floatformat:2 }}</p>
+                        <p class="h5 mb-0">${{ object.budget|floatformat:2 }}</p>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h6 class="text-gold text-uppercase small">Duration</h6>
-                        <p class="h5 mb-0">{{ movie.duration }} min</p>
+                        <p class="h5 mb-0">{{ object.duration }} min</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h6 class="text-gold text-uppercase small">Status</h6>
-                        <p class="h5 mb-0">{{ movie.status }}</p>
+                        <p class="h5 mb-0">{{ object.status }}</p>
                     </div>
                 </div>
             </div>
@@ -82,14 +82,14 @@
                         {% for director in object.directors.all %}
                             <span class="badge bg-dark border border-gold me-1">{{ director.name }}</span>
                         {% empty %}
-                            <span class="text-muted">N/A</span>
+                            <span class="text">N/A</span>
                         {% endfor %}
                     </li>
                     <li class="mb-2"><strong>Writers:</strong> 
                         {% for writer in object.writers.all %}
                             <span class="badge bg-dark border border-gold me-1">{{ writer.name }}</span>
                         {% empty %}
-                            <span class="text-muted">N/A</span>
+                            <span class="text">N/A</span>
                         {% endfor %}
                     </li>
                 </ul>
@@ -97,10 +97,10 @@
             <div class="col-md-6 mb-4">
                 <h5 class="text-gold border-bottom border-burgundy pb-2">Cast</h5>
                 <div class="d-flex flex-wrap gap-2">
-                    {% for actor in movie.actors.all %}
+                    {% for actor in object.actors.all %}
                         <span class="badge bg-dark border border-gold p-2">{{ actor.name }}</span>
                     {% empty %}
-                        <span class="text-muted">No cast information available.</span>
+                        <span class="text">No cast information available.</span>
                     {% endfor %}
                 </div>
             </div>

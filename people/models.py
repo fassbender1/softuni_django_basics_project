@@ -17,7 +17,7 @@ class Person(models.Model):
         null=True,
     )
 
-    image_file = models.ImageField(
+    person_profile_image_file = models.ImageField(
         null=True,
         blank=True
     )

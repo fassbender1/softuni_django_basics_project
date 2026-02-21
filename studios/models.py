@@ -23,6 +23,11 @@ class Studio(models.Model):
         null=True,
     )
 
+    studio_logo_file = models.ImageField(
+        null=True,
+        blank=True
+    )
+
     studio_head = models.CharField(
         max_length=30,
         blank=True,
@@ -34,8 +39,8 @@ class Studio(models.Model):
         blank=True,
     )
 
-    class Meta:
-        abstract = True
+    # class Meta:
+    #     abstract = True
 
     def save(self, *args, **kwargs):
         if not self.slug:

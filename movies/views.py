@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
@@ -22,8 +22,8 @@ class MovieCreateView(CreateView):
 class MovieEditView(UpdateView):
     model = Movie
     form_class = MovieForm
-    success_url = reverse_lazy("common:home")
     template_name = "movies/edit-movie.html"
+    success_url = reverse_lazy("common:home")
     slug_field = "slug"
     slug_url_kwarg = "slug"
 
@@ -38,7 +38,12 @@ class MovieDeleteView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = MovieDeleteForm(instance=self.object)
+        context['movie'] = self.object
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return redirect("movies:confirm-delete", slug=self.object.slug)
 
 class MovieDeleteConfirmView(DeleteView):
     model = Movie
@@ -55,11 +60,10 @@ class MovieListView(ListView):
 
 class MovieDetailView(DetailView):
     model = Movie
-    form_class = MovieForm
-    http_method_names = ['get']
     template_name = 'movies/movie-details.html'
     slug_field = "slug"
     slug_url_kwarg = "slug"
+    http_method_names = ['get']
 
 
 
