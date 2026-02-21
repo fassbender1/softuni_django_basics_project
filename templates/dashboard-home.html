@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Dashboard | CineManager{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-dark border border-burgundy rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-4 fw-bold text-gold">Welcome to CineManager</h1>
+        <p class="col-md-8 fs-4 text-light">Professional management for your cinema productions, cast, and crew. Keep track of every detail from pre-production to box office.</p>
+        <div class="mt-4">
+            <a href="{% url 'movies:list-movies' %}" class="btn btn-burgundy btn-lg me-2">Explore Movies</a>
+            <a href="{% url 'movies:create-movie' %}" class="btn btn-outline-gold btn-lg">Add New Movie</a>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-4 mb-4">
+        <div class="h-100 p-4 text-white bg-dark border border-burgundy rounded-3">
+            <h2 class="text-gold">Movies</h2>
+            <p>Manage your entire film library, including budgets, genres, and release schedules.</p>
+            <a href="{% url 'movies:list-movies' %}" class="btn btn-outline-gold">View Collection</a>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="h-100 p-4 bg-dark border border-burgundy rounded-3 text-white">
+            <h2 class="text-gold">Studios</h2>
+            <p>Track production houses and their associated projects and assets.</p>
+            <a href="#" class="btn btn-outline-gold">Manage Studios</a>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="h-100 p-4 bg-dark border border-burgundy rounded-3 text-white">
+            <h2 class="text-gold">Cast & Crew</h2>
+            <p>Organize information for actors, directors, writers, and technical staff.</p>
+            <a href="#" class="btn btn-outline-gold">Manage Talent</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

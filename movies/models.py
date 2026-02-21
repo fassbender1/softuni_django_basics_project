@@ -4,7 +4,6 @@ from django.utils.text import slugify
 
 from common.choices import GenreChoices, MovieStatusChoices
 from people.models import Actor, Director, Writer
-from studios.models import Studio
 
 
 # Create your models here.
@@ -82,13 +81,13 @@ class Movie(models.Model):
         blank=True,
     )
 
-    studio = models.ForeignKey(
-        Studio,
-        related_name="movies",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
+    # studio = models.ForeignKey(
+    #     "studios.Studio",
+    #     related_name="movies",
+    #     on_delete=models.CASCADE,
+    #     null=True,
+    #     blank=True,
+    # )
 
     def __str__(self):
         return self.title

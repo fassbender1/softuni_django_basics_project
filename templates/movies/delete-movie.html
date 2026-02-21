@@ -1,11 +1,59 @@
-<h2>Delete Movie</h2>
+{% extends 'base.html' %}
 
-{{ form.as_p }}
+{% block title %}Delete {{ movie.title }} | CineManager{% endblock %}
 
-<a href="{% url 'movies:confirm-delete' slug=object.slug %}">
-    <button>Continue</button>
-</a>
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-danger">
+            <div class="card-header bg-dark border-bottom border-danger">
+                <h2 class="text-danger mb-0 py-2">Delete Movie Entry</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-warning">
+                    <h4 class="alert-heading">Warning!</h4>
+                    <p>You are about to delete <strong>{{ movie.title }}</strong>. This action will remove all production data associated with this entry.</p>
+                </div>
 
-<a href="{% url 'movies:detail-movie' slug=object.slug %}">
-    Cancel
-</a>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        {% if object.movie_poster_image %}
+                            <img src="{{ movie.movie_poster_image.url }}" class="img-fluid rounded" alt="{{ movie.title }}">
+                        {% else %}
+                            <div class="bg-secondary rounded h-100 d-flex align-items-center justify-content-center" style="min-height: 200px;">
+                                <span class="text-light">No Poster</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <form>
+                            {% for field in form %}
+                                <div class="mb-2">
+                                    <label class="form-label small text-gold mb-0">{{ field.label }}</label>
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <a href="{% url 'movies:confirm-delete' movie.slug %}" class="btn btn-danger flex-grow-1">Continue</a>
+                    <a href="{% url 'movies:detail-movie' movie.slug %}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    // Add Bootstrap form-control class to all inputs
+    document.querySelectorAll('input, select, textarea').forEach(function(el) {
+        el.classList.add('form-control');
+        el.classList.add('bg-dark');
+        el.classList.add('text-muted');
+    });
+</script>
+{% endblock %}
+{% endblock %}

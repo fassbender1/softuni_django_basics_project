@@ -29,6 +29,7 @@ class MovieEditView(UpdateView):
 
 class MovieDeleteView(DetailView):
     model = Movie
+    queryset = Movie.objects.all()
     template_name = "movies/delete-movie.html"
     success_url = reverse_lazy("common:home")
     slug_field = "slug"
