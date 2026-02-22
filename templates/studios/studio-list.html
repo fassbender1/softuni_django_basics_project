@@ -36,7 +36,7 @@
                     {% if studio.location %}<span class="me-2">{{ studio.location }}</span>{% endif %}
                     {% if studio.founded_in %}<span class="me-2">Founded: {{ studio.founded_in|date:"Y" }}</span>{% endif %}
                 </p>
-                {% if studio.studio_head %}<p class="card-text">Head: {{ studio.studio_head }}</p>{% endif %}
+                {% if studio.studio_head %}<p class="card-text">Studio Head: {{ studio.studio_head }}</p>{% endif %}
             </div>
             <div class="card-footer bg-transparent border-top-0 pb-3">
                 <a href="{% url 'studios:studio-detail' studio.slug %}" class="btn btn-outline-gold w-100">View Details</a>
