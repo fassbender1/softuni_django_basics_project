@@ -70,6 +70,11 @@ class MovieForm(forms.ModelForm):
                 )
         return cleaned_data
 
+# class MovieEditForm(MovieForm):
+#     class Meta:
+#         model = Movie
+#         exclude = ['movie_poster_image', 'slug']
+
 class MovieDeleteForm(MovieForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -23,14 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f23z25rnjb5nw#*)6l!g*f$lo*j%z8v-@udsf%n8q%hmq0am&_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DEBUG = True
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
 
 PROJECT_APPS = [
+    'movies',
+    'people',
+    'studios',
+    'common',
 
 ]
 
@@ -41,10 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'movies',
-    'people',
-    'studios',
-    'common',
 
 ] + PROJECT_APPS
 
@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common.middleware.ForceCustom404Middleware',
 ]
 
 ROOT_URLCONF = 'softuni_django_basics_project.urls'
@@ -131,7 +132,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles'
-]
+]  # cant have it when using below 2 lines
+
+# STATIC_ROOT = BASE_DIR / 'staticfiles' # cant be on while staticfiles_dirs points to root
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

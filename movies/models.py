@@ -1,14 +1,11 @@
-
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
 from django.utils.text import slugify
 
 from common.choices import GenreChoices, MovieStatusChoices
 from people.models import Actor, Director, Writer
 
 
-# Create your models here.
 
 class Movie(models.Model):
 
@@ -36,8 +33,6 @@ class Movie(models.Model):
     )
 
     release_date = models.DateField(
-        # auto_now_add=True,
-        # default=timezone.now,
         null=False,
         blank=False,
     )

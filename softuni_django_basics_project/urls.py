@@ -30,5 +30,7 @@ urlpatterns = [
     path('studios/', include('studios.urls')),
 ]
 
-if settings.DEBUG:
+# handler404 = 'common.views.custom_404_view'
+
+if settings.DEBUG:  # or True for the static files to work if other options don't help me
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
