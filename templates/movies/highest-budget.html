@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Top 5 Highest Budget Movies | CineManager{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-gold">Top 5 Highest Budget Movies</h1>
+    <a href="{% url 'movies:list-movies' %}" class="btn btn-burgundy">View all Movies</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for movie in movies %}
+    <div class="col">
+        <div class="card h-100">
+            {% if movie.movie_poster_image %}
+                <img src="{{ movie.movie_poster_image.url }}" class="card-img-top" alt="{{ movie.title }}" style="height: 400px; object-fit: cover;">
+            {% else %}
+                <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 400px;">
+                    <span class="text-light">No Poster Available</span>
+                </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-gold">{{ movie.title }}</h5>
+                <p class="card-text text-muted small mb-2">
+                    <span class="badge badge-burgundy">{{ movie.genre }}</span>
+                    <span class="ms-2">{{ movie.release_date|date:"Y" }}</span>
+                </p>
+                <p class="card-text">Budget: ${{ movie.budget }}</p>
+                <p class="card-text text-truncate">{{ movie.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 pb-3">
+                <a href="{% url 'movies:detail-movie' movie.slug %}" class="btn btn-outline-gold w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="lead text-muted">No movies found in the collection.</p>
+        <a href="{% url 'movies:create-movie' %}" class="text-gold">Add your first movie now!</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Writers | CineManager{% endblock %}
+
+{% block content %}
+    
+
+<form method="get" class="mb-4">
+    <div class="input-group">
+        {{ form.search_name }}
+        <button class="btn btn-burgundy" type="submit">Search</button>
+    </div>
+</form>
+    
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-gold">Writers</h1>
+    <a href="{% url 'people:writer-create' %}" class="btn btn-burgundy">Add New Writer</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for writer in object_list %}
+    <div class="col">
+        <div class="card h-100">
+            {% if writer.person_profile_image_file %}
+                <img src="{{ writer.person_profile_image_file.url }}" class="card-img-top" alt="{{ writer.name }}" style="height: 400px; object-fit: cover;">
+            {% else %}
+                <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 400px;">
+                    <span class="text-light">No Photo Available</span>
+                </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-gold">{{ writer.name }}</h5>
+                <p class="card-text text small mb-2">
+                    {% if writer.oscar_winner %}<span class="badge badge-burgundy">Oscar Winner</span>{% endif %}
+                </p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 pb-3">
+                <a href="{% url 'people:writer-detail' writer.slug %}" class="btn btn-outline-gold w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="lead text">No writers found in the collection.</p>
+        <a href="{% url 'people:writer-create' %}" class="text-gold">Add your first writer now!</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% if is_paginated %}
+<nav class="mt-5">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link bg-dark text-gold border-burgundy" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+        {% endif %}
+        
+        <li class="page-item active">
+            <span class="page-link bg-dark bg-burgundy border-gold text-gold">{{ page_obj.number }}</span>
+        </li>
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link bg-dark text-gold border-burgundy" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Studios | CineManager{% endblock %}
+
+{% block content %}
+    
+    
+<form method="get" class="mb-4">
+    <div class="input-group">
+        {{ form.search_name }}
+        <button class="btn btn-burgundy" type="submit">Search</button>
+    </div>
+</form>
+    
+    
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-gold">Our Studios</h1>
+    <a href="{% url 'studios:studio-create' %}" class="btn btn-burgundy">Add New Studio</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for studio in object_list %}
+    <div class="col">
+        <div class="card h-100">
+            {% if studio.studio_logo_file %}
+                <img src="{{ studio.studio_logo_file.url }}" class="card-img-top p-3" alt="{{ studio.name }} Logo" style="height: 200px; object-fit: contain; background-color: var(--dark-grey);">
+            {% else %}
+                <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <span class="text-light">No Logo Available</span>
+                </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-gold">{{ studio.name }}</h5>
+                <p class="card-text text small mb-2">
+                    {% if studio.location %}<span class="me-2">{{ studio.location }}</span>{% endif %}
+                    {% if studio.founded_in %}<span class="me-2">Founded: {{ studio.founded_in|date:"Y" }}</span>{% endif %}
+                </p>
+                {% if studio.studio_head %}<p class="card-text">Head: {{ studio.studio_head }}</p>{% endif %}
+            </div>
+            <div class="card-footer bg-transparent border-top-0 pb-3">
+                <a href="{% url 'studios:studio-detail' studio.slug %}" class="btn btn-outline-gold w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="lead text">No studios found in the collection.</p>
+        <a href="{% url 'studios:studio-create' %}" class="text-gold">Add your first studio now!</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% if is_paginated %}
+<nav class="mt-5">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link bg-dark text-gold border-burgundy" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+        {% endif %}
+        
+        <li class="page-item active">
+            <span class="page-link bg-dark bg-burgundy border-gold text-gold">{{ page_obj.number }}</span>
+        </li>
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link bg-dark text-gold border-burgundy" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

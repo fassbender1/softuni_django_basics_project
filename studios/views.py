@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
+from common.mixins import SearchMixin
 from studios.forms import StudioForm
 from studios.models import Studio
 
@@ -34,9 +35,9 @@ class StudioDeleteView(DeleteView):
     success_url = reverse_lazy("studios:studio-list")
 
 
-class StudioListView(ListView):
+class StudioListView(SearchMixin, ListView):
     model = Studio
-    paginate_by = 5
+    paginate_by = 6
     template_name = "studios/studio-list.html"
 
 

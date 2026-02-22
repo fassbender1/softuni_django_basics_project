@@ -5,6 +5,7 @@ from movies import views
 app_name = 'movies'
 urlpatterns = [
     path('', views.MovieListView.as_view(), name='list-movies'),
+    path('highest-budget/', views.HighestBudgetMoviesView.as_view(), name='highest-budget'),
     path('create-movie/', views.MovieCreateView.as_view(), name='create-movie'),
     path('<slug:slug>/', include([
         path('', views.MovieDetailView.as_view(), name = 'detail-movie'),

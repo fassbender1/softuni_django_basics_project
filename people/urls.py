@@ -9,6 +9,7 @@ urlpatterns = [
 
     # Actors
     path('actors/', views.ActorListView.as_view(), name='actors-list'),
+    path('actors/highest-paid/', views.TopPaidActorsView.as_view(), name='highest-paid-actors'),
     path('actors/create/', views.ActorCreateView.as_view(), name='actor-create'),
     path('actors/<slug:slug>/', views.ActorDetailView.as_view(), name='actor-detail'),
     path('actors/<slug:slug>/edit/', views.ActorUpdateView.as_view(), name='actor-update'),

@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Delete Actor | CineManager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card bg-dark-grey text-white border-burgundy">
+            <div class="card-header bg-burgundy border-bottom border-gold">
+                <h2 class="text-gold mb-0 py-2">Delete Actor</h2>
+            </div>
+            <div class="card-body p-4 text-center">
+                <p class="lead mb-4">Are you sure you want to delete the actor:</p>
+                <h3 class="text-gold mb-5">{{ object.name }}?</h3>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger btn-lg">Yes, Delete</button>
+                        <a href="{% url 'people:actor-detail' object.slug %}" class="btn btn-outline-secondary btn-lg">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
