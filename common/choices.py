@@ -20,9 +20,9 @@ class GenreChoices(models.TextChoices):
     OTHER = ("OTHER", "Other")
 
 class MovieStatusChoices(models.TextChoices):
-    Pre_Production = ("Pre-Production", "Pre-Production")
-    Filming = ("Filming", "Filming")
-    Post_Production = ("Post-Production", "Post-Production")
-    Released = ("Released", "Released")
-    Other = ("Other", "Other")
+    Pre_Production = ("PRE-PRODUCTION", "Pre-Production")
+    Filming = ("FILMING", "Filming")
+    Post_Production = ("POST-PRODUCTION", "Post-Production")
+    Released = ("RELEASED", "Released")
+    Other = ("OTHER", "Other")
 

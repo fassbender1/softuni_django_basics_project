@@ -35,7 +35,7 @@ class Movie(models.Model):
         blank=True,
     )
 
-    release_date = models.DateTimeField(
+    release_date = models.DateField(
         # auto_now_add=True,
         # default=timezone.now,
         null=False,

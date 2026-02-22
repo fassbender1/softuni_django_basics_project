@@ -1,4 +1,6 @@
 from django import forms
+
+from common.choices import MovieStatusChoices
 from movies.models import Movie
 from django.core.exceptions import ValidationError
 from django.utils import timezone
@@ -28,6 +30,9 @@ class MovieForm(forms.ModelForm):
             },
             'duration': {
                 'placeholder': 'Duration in minutes.',
+            },
+            'release_date': {
+                'required': "The release date is required.",
             }
         }
 
@@ -50,11 +55,20 @@ class MovieForm(forms.ModelForm):
         cleaned_data = super().clean()
         release_date = cleaned_data.get('release_date')
         status = cleaned_data.get('status')
-        if (release_date and status in ['PRE_PRODUCTION', 'POST_PRODUCTION', 'FILMING'] and release_date.date() < timezone.now().date()):
-            self.add_error(
-                'release_date',
-                f"Movies in '{status}' state cannot have a past release date."
-            )
+
+        restricted_statuses = {
+            MovieStatusChoices.Pre_Production,
+            MovieStatusChoices.Filming,
+            MovieStatusChoices.Post_Production,
+        }
+
+        if release_date and status in restricted_statuses:
+            if release_date < timezone.now().date():
+                self.add_error(
+                    'release_date',
+                    f"Movies in '{MovieStatusChoices(status).label}' state cannot have a past release date."
+                )
+        return cleaned_data
 
 class MovieDeleteForm(MovieForm):
     def __init__(self, *args, **kwargs):
