@@ -36,7 +36,7 @@ class StudioDeleteView(DeleteView):
 
 class StudioListView(ListView):
     model = Studio
-    paginate_by = 10
+    paginate_by = 5
     template_name = "studios/studio-list.html"
 
 

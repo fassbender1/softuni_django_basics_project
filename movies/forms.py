@@ -19,6 +19,7 @@ class MovieForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'placeholder': 'Brief synopsis'}),
             'genre': forms.Select(attrs={'class': 'form-select'}),
+            "release_date": forms.DateInput(attrs={"type": "date"}),
         }
         error_messages = {
             'budget': {
@@ -32,6 +33,9 @@ class MovieForm(forms.ModelForm):
 
     def clean_budget(self):
         budget = self.cleaned_data.get('budget')
+        max_budget = 250000000
+        if budget > max_budget:
+            raise ValidationError('Budget cannot exceed $250 000 000.')
         if budget <= 0:
             raise ValidationError('The movie cannot have a negative budget.')
         return budget

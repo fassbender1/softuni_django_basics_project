@@ -54,7 +54,7 @@ class MovieDeleteConfirmView(DeleteView):
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 5
+    paginate_by = 4
     ordering = 'budget'
     template_name = 'movies/movie-list.html'
 

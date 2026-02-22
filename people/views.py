@@ -97,7 +97,7 @@ class DirectorDeleteView(DeleteView):
 
 class DirectorListView(ListView):
     model = Director
-    paginate_by = 10
+    paginate_by = 5
     template_name = "people/list-directors.html"
 
 
@@ -143,7 +143,7 @@ class WriterDeleteView(DeleteView):
 
 class WriterListView(ListView):
     model = Writer
-    paginate_by = 10
+    paginate_by = 5
     template_name = "people/list-writers.html"
 
 
