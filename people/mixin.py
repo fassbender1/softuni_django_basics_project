@@ -2,7 +2,7 @@ from django import forms
 
 
 class SalaryValidationMixin:
-    MAX_SALARY = None 
+    MAX_SALARY = None
 
     def clean_salary(self):
         salary = self.cleaned_data.get("salary")

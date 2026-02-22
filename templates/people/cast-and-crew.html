@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Cast & Crew | CineManager{% endblock %}
+
+{% block content %}
+<h1 class="text-gold mb-4">Cast & Crew</h1>
+
+{% if form %}
+<form method="get" class="mb-4">
+    <div class="input-group">
+        {{ form.search_name }}
+        <button class="btn btn-gold" type="submit">Search</button>
+    </div>
+</form>
+{% endif %}
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <a href="{% url 'people:actors-list' %}" class="text-decoration-none">
+            <div class="card bg-dark border-gold text-center h-100 cast-card">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h3 class="text-gold">Actors</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <a href="{% url 'people:directors-list' %}" class="text-decoration-none">
+            <div class="card bg-dark border-gold text-center h-100 cast-card">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h3 class="text-gold">Directors</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <a href="{% url 'people:writers-list' %}" class="text-decoration-none">
+            <div class="card bg-dark border-gold text-center h-100 cast-card">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h3 class="text-gold">Writers</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+{% endblock %}

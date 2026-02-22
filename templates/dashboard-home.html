@@ -26,14 +26,14 @@
         <div class="h-100 p-4 bg-dark border border-burgundy rounded-3 text-white">
             <h2 class="text-gold">Studios</h2>
             <p>Track production houses and their associated projects and assets.</p>
-            <a href="#" class="btn btn-outline-gold">Manage Studios</a>
+            <a href="{% url 'studios:studio-list' %}" class="btn btn-outline-gold">Manage Studios</a>
         </div>
     </div>
     <div class="col-md-4 mb-4">
         <div class="h-100 p-4 bg-dark border border-burgundy rounded-3 text-white">
             <h2 class="text-gold">Cast & Crew</h2>
             <p>Organize information for actors, directors, writers, and technical staff.</p>
-            <a href="#" class="btn btn-outline-gold">Manage Talent</a>
+            <a href="{% url 'people:cast-and-crew' %}" class="btn btn-outline-gold">Manage Talent</a>
         </div>
     </div>
 </div>
