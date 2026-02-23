@@ -264,6 +264,8 @@ source .venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
 4️⃣ Environment Variables
 
+The full project is available as a downloadable archive in the repository (CineManager.zip).
+
 Create a .env file in the root directory (same level as manage.py).
 
 Example:
