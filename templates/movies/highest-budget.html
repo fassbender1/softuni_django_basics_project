@@ -22,7 +22,7 @@
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title text-gold">{{ movie.title }}</h5>
-                <p class="card-text text-muted small mb-2">
+                <p class="card-text text small mb-2">
                     <span class="badge badge-burgundy">{{ movie.genre }}</span>
                     <span class="ms-2">{{ movie.release_date|date:"Y" }}</span>
                 </p>
@@ -36,7 +36,7 @@
     </div>
     {% empty %}
     <div class="col-12 text-center py-5">
-        <p class="lead text-muted">No movies found in the collection.</p>
+        <p class="lead text">No movies found in the collection.</p>
         <a href="{% url 'movies:create-movie' %}" class="text-gold">Add your first movie now!</a>
     </div>
     {% endfor %}

@@ -113,6 +113,7 @@ Full CRUD
 Relation with Movies (ForeignKey reverse access)
 
 🗄 Database Design
+
 ✔ Models
 
 Movie
@@ -230,6 +231,7 @@ All pages are accessible through navigation.
 No orphan routes.
 
 🔍 Filtering & Extra Functionality
+
 Movie Filtering
 
 Filter by Status:
@@ -253,16 +255,27 @@ Top 5 Highest Paid Actors
 These features demonstrate advanced queryset usage and sorting.
 
 ⚙️ Installation & Setup
+
 1️⃣ Clone Repository
+
 git clone <your-github-link>
+
 cd softuni_django_basics_project
+
 2️⃣ Create Virtual Environment
+
 python -m venv .venv
+
 source .venv/bin/activate   # macOS/Linux
+
 .venv\Scripts\activate      # Windows
+
 3️⃣ Install Dependencies
+
 pip install -r requirements.txt
+
 4️⃣ Environment Variables
+
 
 The full project is available as a downloadable archive in the repository (CineManager.zip).
 
@@ -271,12 +284,17 @@ Create a .env file in the root directory (same level as manage.py).
 Example:
 
 SECRET_KEY=your-secret-key
+
 DEBUG=True
 
 DB_NAME=softuni_django_basics_project
+
 DB_USER=postgres
+
 DB_PASSWORD=your_password
+
 DB_HOST=127.0.0.1
+
 DB_PORT=5432
 
 ⚠ The .env file is not included in the repository for security reasons.
@@ -290,11 +308,13 @@ Database name: softuni_django_basics_project
 Then run:
 
 python manage.py migrate
+
 python manage.py runserver
 
 Application runs at:
 
 http://127.0.0.1:8000/
+
 🧠 OOP & Code Quality
 
 The project follows:
@@ -314,6 +334,7 @@ Clean naming conventions
 Strong cohesion & loose coupling
 
 🔗 Application URLs
+
 Home
 
 /
@@ -399,16 +420,27 @@ Git & GitHub
 📊 Assessment Criteria Coverage
 
 ✔ 3+ Django apps
+
 ✔ 3+ models
+
 ✔ M2M and FK relationships
+
 ✔ 3+ forms with validation
+
 ✔ 10+ templates
+
 ✔ Full CRUD for multiple models
+
 ✔ Filtering & sorting
+
 ✔ Custom 404 page
+
 ✔ PostgreSQL
+
 ✔ GitHub repository
+
 ✔ Clean architecture
+
 
 📌 Notes
 
