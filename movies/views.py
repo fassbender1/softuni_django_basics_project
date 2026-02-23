@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
+from common.choices import MovieStatusChoices
 from common.mixins import SearchMixin
 from movies.forms import MovieForm, MovieDeleteForm
 from movies.models import Movie
@@ -71,6 +72,21 @@ class MovieListView(SearchMixin, ListView):
     ordering = 'budget'
     template_name = 'movies/movie-list.html'
     model_search_field = "title"
+
+    def get_queryset(self):
+        queryset = Movie.objects.all()
+
+        status = self.request.GET.get("status")
+        if status:
+            queryset = queryset.filter(status=status)
+
+        return queryset.order_by("-release_date")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_status"] = self.request.GET.get("status", "")
+        context["status_choices"] = MovieStatusChoices.choices
+        return context
 
 class MovieDetailView(DetailView):
     model = Movie

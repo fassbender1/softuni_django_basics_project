@@ -32,7 +32,7 @@
         <h1 class="text-gold display-4 mb-2">{{ object.title }}</h1>
         <div class="mb-4">
             <span class="badge badge-burgundy me-2">{{ object.genre }}</span>
-            <span class="text">| Released: {{ object.release_date|date:"F j, Y" }}</span>
+            <span class="text">| Release date: {{ object.release_date|date:"F j, Y" }}</span>
         </div>
 
         <div class="card mb-4">
@@ -75,21 +75,33 @@
                 <ul class="list-unstyled">
                     <li class="mb-2"><strong>Studio:</strong> 
                         {% if object.studio %}
-                            <span class="text-light">{{ object.studio.name }}</span>
+                            <span class="text-light">
+                                    <a href="{% url 'studios:studio-detail' object.studio.slug %}" class="text-gold">
+                                        {{ object.studio.name }}
+                                    </a>
+                            </span>
                         {% else %}
                             <span class="text-muted">N/A</span>
                         {% endif %}
                     </li>
                     <li class="mb-2"><strong>Directors:</strong> 
                         {% for director in object.directors.all %}
-                            <span class="badge bg-dark border border-gold me-1">{{ director.name }}</span>
+                            <span class="badge bg-dark border border-gold me-1">
+                                        <a href="{% url 'people:director-detail' director.slug %}" class="text-gold">
+                                            {{ director.name }}
+                                        </a>
+                            </span>
                         {% empty %}
                             <span class="text">N/A</span>
                         {% endfor %}
                     </li>
                     <li class="mb-2"><strong>Writers:</strong> 
                         {% for writer in object.writers.all %}
-                            <span class="badge bg-dark border border-gold me-1">{{ writer.name }}</span>
+                            <span class="badge bg-dark border border-gold me-1">
+                                        <a href="{% url 'people:writer-detail' writer.slug %}" class="text-gold">
+                                            {{ writer.name }}
+                                        </a>
+                            </span>
                         {% empty %}
                             <span class="text">N/A</span>
                         {% endfor %}
@@ -100,7 +112,11 @@
                 <h5 class="text-gold border-bottom border-burgundy pb-2">Cast</h5>
                 <div class="d-flex flex-wrap gap-2">
                     {% for actor in object.actors.all %}
-                        <span class="badge bg-dark border border-gold p-2">{{ actor.name }}</span>
+                        <span class="badge bg-dark border border-gold p-2">
+                                    <a href="{% url 'people:actor-detail' actor.slug %}" class="text-gold">
+                                        {{ actor.name }}
+                                    </a>
+                        </span>
                     {% empty %}
                         <span class="text">No cast information available.</span>
                     {% endfor %}

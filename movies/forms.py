@@ -22,6 +22,10 @@ class MovieForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'placeholder': 'Brief synopsis'}),
             'genre': forms.Select(attrs={'class': 'form-select'}),
             "release_date": forms.DateInput(attrs={"type": "date"}),
+            "actors": forms.SelectMultiple(attrs={"class": "form-select"}),
+            "directors": forms.SelectMultiple(attrs={"class": "form-select"}),
+            "writers": forms.SelectMultiple(attrs={"class": "form-select"}),
+            "studio": forms.Select(attrs={"class": "form-select"}),
         }
         error_messages = {
             'budget': {
