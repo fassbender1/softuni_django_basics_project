@@ -1,9 +1,12 @@
 
 # 🎬 CineManager
 
+---
 
 A Django-based web application for managing Movies, Cast & Crew, and Studios.
 Built as a final project for the SoftUni Django Basics Regular Exam (February 2026).
+
+---
 
 📌 Project Overview
 
@@ -64,6 +67,8 @@ Error Handling: Custom 404 error page.
 Media Management: Upload and display images for movie posters, studio logos, and person profile images.  
 *(The project archive and repository already include media files, that can be used to avoid having to search for images.)*
 
+---
+
 🏗 Project Architecture
 
 The project consists of four Django apps:
@@ -76,7 +81,7 @@ Base template
 
 Custom 404 middleware
 
-Shared components and layout
+Shared components and layout (Search Mixin functionality as well as form that are used by the other apps, as well as Movie Genre and Movie Status choices )
 
 2️⃣ movies
 
@@ -150,6 +155,8 @@ Reverse relationship usage in templates
 
 Proper related_name usage
 
+---
+
 🧾 Forms & Validation
 
 The project includes multiple forms with:
@@ -176,6 +183,8 @@ Validation
 
 Redirects after successful submission
 
+---
+
 📄 Pages & Templates
 
 The application contains more than 10 templates, including:
@@ -198,13 +207,46 @@ Highest Budget Movies (/movies/highest-budget/)
 
 Actors List
 
+Actors Detail
+
+Actors Create
+
+Actors Edit
+
+Actors Delete
+
 Highest Paid Actors (/cast-and-crew/actors/highest-paid/)
 
 Directors List
 
+Directors Detail
+
+Directors Create
+
+Directors Edit
+
+Directors Delete
+
 Writers List
 
+Writers Detail
+
+Writers Create
+
+Writers Edit
+
+Writers Delete
+
 Studios List
+
+Studios Detail
+
+Studios Create
+
+Studios Edit
+
+Studios Delete
+
 
 Custom 404 Page
 
@@ -216,7 +258,7 @@ Template inheritance
 
 Reusable partials (cards, navigation)
 
-Bootstrap-based design with additional manual tweaks
+Bootstrap-based design with many additional manual tweaks
 
 Dynamic database rendering
 
@@ -229,6 +271,8 @@ Consistent footer
 All pages are accessible through navigation.
 
 No orphan routes.
+
+---
 
 🔍 Filtering & Extra Functionality
 
@@ -253,6 +297,8 @@ Top 5 Highest Budget Movies
 Top 5 Highest Paid Actors
 
 These features demonstrate advanced queryset usage and sorting.
+
+---
 
 ⚙️ Installation & Setup
 
@@ -315,6 +361,8 @@ Application runs at:
 
 http://127.0.0.1:8000/
 
+---
+
 🧠 OOP & Code Quality
 
 The project follows:
@@ -333,75 +381,55 @@ Clean naming conventions
 
 Strong cohesion & loose coupling
 
+---
+
 🔗 Application URLs
 
 Home
-
-/
+- `/`
 
 Movies
-
-/movies/
-
-/movies/highest-budget/
-
-/movies/create-movie/
-
-/movies/<slug>/
-
-/movies/<slug>/edit/
-
-/movies/<slug>/delete/
-
-/movies/<slug>/delete/confirm/
+- `/movies/`
+- `/movies/highest-budget/`
+- `/movies/create-movie/`
+- `/movies/<slug>/`
+- `/movies/<slug>/edit/`
+- `/movies/<slug>/delete/`
+- `/movies/<slug>/delete/confirm/`
 
 Cast & Crew
+- `/cast-and-crew/`
 
-/cast-and-crew/
+Actors
+- `/cast-and-crew/actors/`
+- `/cast-and-crew/actors/highest-paid/`
+- `/cast-and-crew/actors/create/`
+- `/cast-and-crew/actors/<slug>/`
+- `/cast-and-crew/actors/<slug>/edit/`
+- `/cast-and-crew/actors/<slug>/delete/`
 
-/cast-and-crew/actors/
+Directors
+- `/cast-and-crew/directors/`
+- `/cast-and-crew/directors/create/`
+- `/cast-and-crew/directors/<slug>/`
+- `/cast-and-crew/directors/<slug>/edit/`
+- `/cast-and-crew/directors/<slug>/delete/`
 
-/cast-and-crew/actors/highest-paid/
-
-/cast-and-crew/actors/create/
-
-/cast-and-crew/actors/<slug>/
-
-/cast-and-crew/actors/<slug>/edit/
-
-/cast-and-crew/actors/<slug>/delete/
-
-/cast-and-crew/directors/
-
-/cast-and-crew/directors/create/
-
-/cast-and-crew/directors/<slug>/
-
-/cast-and-crew/directors/<slug>/edit/
-
-/cast-and-crew/directors/<slug>/delete/
-
-/cast-and-crew/writers/
-
-/cast-and-crew/writers/create/
-
-/cast-and-crew/writers/<slug>/
-
-/cast-and-crew/writers/<slug>/edit/
-
-/cast-and-crew/writers/<slug>/delete/
+Writers
+- `/cast-and-crew/writers/`
+- `/cast-and-crew/writers/create/`
+- `/cast-and-crew/writers/<slug>/`
+- `/cast-and-crew/writers/<slug>/edit/`
+- `/cast-and-crew/writers/<slug>/delete/`
 
 Studios
+- `/studios/`
+- `/studios/create/`
+- `/studios/<slug>/`
+- `/studios/<slug>/edit/`
+- `/studios/<slug>/delete/`
 
-/studios/
-
-/studios/create/
-
-/studios/<slug>/
-
-/studios/<slug>/edit/
-
-/studios/<slug>/delete/
+---
 
 🛠 Technologies Used
 
@@ -416,6 +444,8 @@ Bootstrap 5
 More in requirements.txt file
 
 Git & GitHub
+
+---
 
 📊 Assessment Criteria Coverage
 
@@ -441,6 +471,7 @@ Git & GitHub
 
 ✔ Clean architecture
 
+---
 
 📌 Notes
 
