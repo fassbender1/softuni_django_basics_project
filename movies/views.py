@@ -74,7 +74,8 @@ class MovieListView(SearchMixin, ListView):
     model_search_field = "title"
 
     def get_queryset(self):
-        queryset = Movie.objects.all()
+        # queryset = Movie.objects.all()
+        queryset = super().get_queryset()
 
         status = self.request.GET.get("status")
         if status:
